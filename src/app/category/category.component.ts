@@ -18,9 +18,15 @@ export class CategoryComponent implements OnInit {
     ' #B9E9FC',
     '  #DAF5FF',
   ];
+  categoryArr: Array<any> = [];
   constructor(private categoryService: CategoryService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoryService.loadCategory().subscribe((val) => {
+      this.categoryArr = val;
+      console.log(this.categoryArr);
+    });
+  }
 
   onSubmit(f: NgForm) {
     let randomNumber = Math.floor(Math.random() * 8);
@@ -29,7 +35,7 @@ export class CategoryComponent implements OnInit {
       colorCode: this.colorArr[randomNumber],
       todoCount: 0,
     };
-    // this.categoryService.saveCategory(f.value)
-    console.log();
+    this.categoryService.saveCategory(todoCategory);
+    console.log(todoCategory);
   }
 }

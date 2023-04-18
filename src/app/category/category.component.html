@@ -1,7 +1,7 @@
 <div class="row justify-content-center md-3">
   <div class="col-md-4 text-center">
-    <h1 class="text-uppercase text-danger mt-5">Todo Category</h1>
-    <p class="text-info">
+    <h1 class="text-uppercase text-info mt-5">Todo Category</h1>
+    <p class="text-white">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, maxime.
     </p>
   </div>
@@ -9,7 +9,11 @@
 
 <div class="row g-0">
   <div class="col-md-12">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-inline">
+    <form
+      #f="ngForm"
+      (ngSubmit)="f.form.valid && onSubmit(f)"
+      class="form-inline"
+    >
       <div class="row">
         <div class="form-group col-md-10">
           <input
@@ -18,18 +22,30 @@
             name="categoryName"
             class="form-control drop-shadow"
             ngModel
+            required
+            #category="ngModel"
+            [ngClass]="{
+              'border-danger':
+                category.invalid && category.touched && f.submitted
+            }"
           />
         </div>
-        <button class="col-md-2 btn btn-danger btn-block btn-todo drop-shadow">
+        <button class="col-md-2 btn btn-info btn-block btn-todo drop-shadow">
           Add
         </button>
+        <span
+          *ngIf="category.invalid && category.touched && f.submitted"
+          class="text-danger"
+        >
+          Category is required...
+        </span>
       </div>
     </form>
   </div>
 </div>
 
 <div class="row categories-list">
-  <div class="col-md-3">
+  <div class="col-md-3" *ngFor="let category of categoryArr">
     <div class="card">
       <div class="card-body">
         <div class="clearfix">
@@ -46,12 +62,14 @@
           </div>
         </div>
         <div class="todo-content">
-          <h3>Category</h3>
+          <h3>{{ category.data.category }}</h3>
           <small class="text-secondary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </small>
         </div>
-        <span class="badge badge-danger">3 - Todos</span>
+        <span class="badge badge-danger"
+          >{{ category.data.todoCount }} - Todos</span
+        >
       </div>
     </div>
   </div>
