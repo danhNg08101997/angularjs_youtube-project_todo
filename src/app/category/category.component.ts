@@ -36,6 +36,6 @@ export class CategoryComponent implements OnInit {
       todoCount: 0,
     };
     this.categoryService.saveCategory(todoCategory);
-    console.log(todoCategory);
+    f.resetForm();
   }
 }

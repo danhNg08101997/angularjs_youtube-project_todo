@@ -46,7 +46,7 @@
 
 <div class="row categories-list">
   <div class="col-md-3" *ngFor="let category of categoryArr">
-    <div class="card">
+    <div class="card" [style.border-left-color]="category.data.colorCode">
       <div class="card-body">
         <div class="clearfix">
           <div class="float-start">
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="todo-content">
-          <h3>{{ category.data.category }}</h3>
+          <h3 [style.color]="category.data.colorCode">{{ category.data.category }}</h3>
           <small class="text-secondary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </small>
