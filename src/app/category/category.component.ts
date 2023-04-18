@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CategoryService } from '../service/category.service';
 
 @Component({
   selector: 'app-category',
@@ -7,11 +8,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  constructor() {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {}
 
   onSubmit(f: NgForm) {
-    console.log(f.value);
+    this.categoryService.saveCategory(f.value)
   }
 }

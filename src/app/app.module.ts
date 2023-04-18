@@ -3,6 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
+
+
+// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {AngularFireModule} from '@angular/fire/compat'
+
+
+import { environment } from 'src/environments/environment';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +27,15 @@ import { TodoComponent } from './todo/todo.component';
     CategoryComponent,
     TodoComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    FontAwesomeModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'categories'),
+
+    
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

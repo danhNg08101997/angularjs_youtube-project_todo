@@ -1,16 +1,17 @@
 <div class="row justify-content-center md-3">
-    <div class="col-md-4 text-center">
-      <h1 class="text-uppercase text-danger mt-5">Todo Category</h1>
-      <p class="text-info">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, maxime.
-      </p>
-    </div>
+  <div class="col-md-4 text-center">
+    <h1 class="text-uppercase text-danger mt-5">Todo Category</h1>
+    <p class="text-info">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, maxime.
+    </p>
   </div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-inline">
-        <div class="col-md-10 form-group">
+</div>
+
+<div class="row g-0">
+  <div class="col-md-12">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-inline">
+      <div class="row">
+        <div class="form-group col-md-10">
           <input
             type="text"
             placeholder="Add New Category here..."
@@ -22,36 +23,36 @@
         <button class="col-md-2 btn btn-danger btn-block btn-todo drop-shadow">
           Add
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
-  
-  <div class="row categories-list">
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="clearfix">
-            <div class="float-left">
-              <div class="badge badge-primary">CATEGORY</div>
-            </div>
-            <div class="float-right cat-tools">
-              <small>
-                <i class="fa-solid fa-pencil text-success"></i>
-              </small>
-              <small>
-                  <i class="fa-solid fa-trash text-danger"></i>
-              </small>
-            </div>
+</div>
+
+<div class="row categories-list">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-start">
+            <div class="badge badge-primary">CATEGORY</div>
           </div>
-          <div class="todo-content">
-              <h3>Category</h3>
-              <small class="text-secondary">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </small>
+          <div class="float-end cat-tools">
+            <small>
+              <i class="fa-solid fa-pencil text-success"></i>
+            </small>
+            <small>
+              <i class="fa-solid fa-trash text-danger"></i>
+            </small>
           </div>
-          <span class="badge badge-danger">3 - Todos</span>
         </div>
+        <div class="todo-content">
+          <h3>Category</h3>
+          <small class="text-secondary">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </small>
+        </div>
+        <span class="badge badge-danger">3 - Todos</span>
       </div>
     </div>
   </div>
-  
+</div>
