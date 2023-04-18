@@ -3,11 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
-
-
-// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import {AngularFireModule} from '@angular/fire/compat'
-
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { environment } from 'src/environments/environment';
 
@@ -32,9 +29,8 @@ import { TodoComponent } from './todo/todo.component';
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'categories'),
-
-    
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
