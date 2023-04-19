@@ -13,7 +13,7 @@ export class CategoryService {
     this.afs
       .collection('categories')
       .add(data)
-      .then((ref) => {
+      .then(() => {
         this.toastr.success('New Category Saved Successfully');
       });
   }
@@ -31,5 +31,23 @@ export class CategoryService {
           });
         })
       );
+  }
+
+  updateCategory(id: string, updatedData: string) {
+    this.afs
+      .doc('categories/' + id)
+      .update({ category: updatedData })
+      .then(() => {
+        this.toastr.warning('Updated Successfully');
+      });
+  }
+
+  deleteCategory(id: string) {
+    this.afs
+      .doc('categories/' + id)
+      .delete()
+      .then(() => {
+        this.toastr.error('Category deleted successfully');
+      });
   }
 }

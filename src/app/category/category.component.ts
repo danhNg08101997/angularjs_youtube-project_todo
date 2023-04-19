@@ -16,26 +16,53 @@ export class CategoryComponent implements OnInit {
     '#FEFF86',
     '#B0DAFF',
     ' #B9E9FC',
-    '  #DAF5FF',
+    '#DAF5FF',
+    ' #454545',
+    '#FF6000',
+    '#FFA559',
+    '#FFE6C7',
   ];
   categoryArr: Array<any> = [];
+  categoryName: string = '';
+  btnStatus: string = 'Add';
+  categoryId: string = '';
+
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.categoryService.loadCategory().subscribe((val) => {
       this.categoryArr = val;
-      console.log(this.categoryArr);
     });
   }
 
   onSubmit(f: NgForm) {
-    let randomNumber = Math.floor(Math.random() * 8);
-    let todoCategory = {
-      category: f.value.categoryName,
-      colorCode: this.colorArr[randomNumber],
-      todoCount: 0,
-    };
-    this.categoryService.saveCategory(todoCategory);
+    if (this.btnStatus === 'Add') {
+      let randomNumber = Math.floor(Math.random() * 12);
+      let todoCategory = {
+        category: f.value.categoryName,
+        colorCode: this.colorArr[randomNumber],
+        todoCount: 0,
+      };
+      this.categoryService.saveCategory(todoCategory);
+    } else if (this.btnStatus === 'Edit') {
+      this.categoryService.updateCategory(
+        this.categoryId,
+        f.value.categoryName
+      );
+      this.btnStatus = 'Add';
+    }
+
     f.resetForm();
   }
+
+  onEdit(id: string, category: string) {
+    this.categoryId = id;
+    this.categoryName = category;
+    this.btnStatus = 'Edit';
+  }
+
+  onDelete(id:string) {
+    this.categoryService.deleteCategory(id);
+  }
+
 }
