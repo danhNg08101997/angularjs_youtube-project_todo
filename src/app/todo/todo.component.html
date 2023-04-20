@@ -60,10 +60,10 @@
             </b>
           </div>
           <div class="float-end">
-            <span (click)="onComplete(todo.id)">
+            <span (click)="onComplete(todo.id)" *ngIf="!todo.data.isComplete">
               <i class="fa-regular fa-circle-check text-success"></i>
             </span>
-            <span (click)="onImcomplete(todo.id)">
+            <span (click)="onImcomplete(todo.id)" *ngIf="todo.data.isComplete">
               <i class="fa-regular fa-circle-xmark text-danger"></i>
             </span>
             <div class="todo-tools">
