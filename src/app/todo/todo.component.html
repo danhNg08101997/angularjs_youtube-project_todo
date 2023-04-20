@@ -9,19 +9,35 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="" class="form-inline">
-      <div class="row ">
+    <form
+      #f="ngForm"
+      (ngSubmit)="f.form.valid && onSubmit(f)"
+      class="form-inline"
+    >
+      <div class="row">
         <div class="col-md-10 form-group">
           <input
             type="text"
             placeholder="Add New Todos here..."
-            name="categoryName"
+            name="todoText"
             class="form-control-plaintext drop-shadow"
+            [(ngModel)]="todoName"
+            required
+            #todo="ngModel"
+            [ngClass]="{
+              'border-danger': todo.invalid && todo.touched && f.submitted
+            }"
           />
         </div>
         <button class="col-md-2 btn btn-info btn-block btn-todo drop-shadow">
-          Add
+          {{ btnStatus }}
         </button>
+        <span
+          *ngIf="todo.invalid && todo.touched && f.submitted"
+          class="text-danger"
+        >
+          Todo is required...
+        </span>
       </div>
     </form>
   </div>
@@ -29,30 +45,32 @@
 
 <div class="row justify-content-center todo-lists">
   <div class="col-md-6">
-    <div class="card">
+    <div class="card mt-3" *ngFor="let todo of todos">
       <div class="card-body">
         <div class="clearfix">
           <div class="float-start">
-            <span>
+            <span *ngIf="!todo.data.isComplete">
               <i class="fa-regular fa-circle text-danger"></i>
             </span>
-            <span>
+            <span *ngIf="todo.data.isComplete">
               <i class="fa-solid fa-check text-success"></i>
             </span>
-            New todo
+            <b [ngClass]="{ isComplete: todo.data.isComplete }">
+              {{ todo.data.todo }}
+            </b>
           </div>
           <div class="float-end">
-            <span>
+            <span (click)="onComplete(todo.id)">
               <i class="fa-regular fa-circle-check text-success"></i>
             </span>
-            <span>
+            <span (click)="onImcomplete(todo.id)">
               <i class="fa-regular fa-circle-xmark text-danger"></i>
             </span>
             <div class="todo-tools">
-              <small>
+              <small (click)="onEdit(todo.id, todo.data.todo)">
                 <i class="fa-solid fa-pencil text-warning"></i>
               </small>
-              <small>
+              <small (click)="onDelete(todo.id)">
                 <i class="fa-solid fa-trash text-danger"></i>
               </small>
             </div>

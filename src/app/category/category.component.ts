@@ -39,7 +39,7 @@ export class CategoryComponent implements OnInit {
     if (this.btnStatus === 'Add') {
       let randomNumber = Math.floor(Math.random() * 12);
       let todoCategory = {
-        category: f.value.categoryName,
+        category: f.value.categoryText,
         colorCode: this.colorArr[randomNumber],
         todoCount: 0,
       };
@@ -47,7 +47,7 @@ export class CategoryComponent implements OnInit {
     } else if (this.btnStatus === 'Edit') {
       this.categoryService.updateCategory(
         this.categoryId,
-        f.value.categoryName
+        f.value.categoryText
       );
       this.btnStatus = 'Add';
     }
